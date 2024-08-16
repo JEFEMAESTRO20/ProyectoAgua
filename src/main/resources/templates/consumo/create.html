@@ -1,0 +1,46 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultrap.net.nz./thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout">
+
+<div layout:fragment="content">
+    <h1>Crear nuevo Consumo</h1>
+    <form th:action="@{/consumos/save}" th:object="${consumo}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del consumidor" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pasaje">Pasaje</label>
+                    <textarea class="form-control" th:field="*{pasaje}" id="pasaje" cols="12" rows="3" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="casa">Casa</label>
+                    <textarea class="form-control" th:field="*{casa}" id="casa" cols="12" rows="3" required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="consumo">Consumo</label>
+                    <textarea class="form-control" th:field="*{consumo}" id="consumo" cols="12" rows="3" required></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar</button> |
+        <a th:href="@{/consumos}">Regresar</a>
+    </form>
+
+</div>
