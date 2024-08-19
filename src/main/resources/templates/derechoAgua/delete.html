@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+<div layout:fragment="content">
+    <h1>Eliminar Derecho de Agua</h1>
+    <h3>¿Estás seguro de que deseas eliminar este registro?</h3>
+    <div>
+        <hr />
+        <div class="row">
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-10" th:text="${derechoAgua.id}"></dd>
+
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10" th:text="${derechoAguas.nombre}"></dd>
+
+            <dt class="col-sm-2">Pasaje</dt>
+            <dd class="col-sm-10" th:text="${derechoAguas.pasaje}"></dd>
+
+            <dt class="col-sm-2">Casa</dt>
+            <dd class="col-sm-10" th:text="${derechoAguas.casa}"></dd>
+        </div>
+
+        <form th:action="@{/derechoAguas/delete}" method="post">
+            <input type="hidden" name="id" th:value="${derechoAguas.id}" />
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a th:href="@{/derechoAguas}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+
