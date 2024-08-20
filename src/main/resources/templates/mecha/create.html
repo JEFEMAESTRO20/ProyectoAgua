@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+<div layout:fragment="content">
+    <h1>Crear Nuevo Mecha</h1>
+    <form th:action="@{/mechas/create}" th:object="${mecha}" method="post">
+        <div class="form-group">
+            <label for="idDerechoAgua">ID Derecho Agua</label>
+            <input type="number" id="idDerechoAgua" th:field="*{idDerechoAgua}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cantidadMecha">CantidadMecha</label>
+            <input type="number" id="cantidadMecha" th:field="*{cantidadMecha}" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/mechas}">Cancelar</a>
+    </form>
+</div>
+
+</html>
