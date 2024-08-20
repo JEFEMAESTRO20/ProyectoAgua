@@ -1,7 +1,6 @@
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultrap.net.nz./thymeleaf/layout"
-      layout:decorate="/layouts/_mainLayout">
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.thymeleaf.org" >
 
 <div layout:fragment="content">
     <h1>Crear nuevo Consumo</h1>
@@ -16,9 +15,10 @@
         </div>
         <div class="row">
             <div class="col-md-6">
+
                 <div class="form-group">
                     <label for="pasaje">Pasaje</label>
-                    <textarea class="form-control" th:field="*{pasaje}" id="pasaje" cols="12" rows="3" required></textarea>
+                    <input type="text" class="form-control" th:field="*{pasaje}" id="pasaje" placeholder="Escriba el pasaje del consumidor" required>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="casa">Casa</label>
-                    <textarea class="form-control" th:field="*{casa}" id="casa" cols="12" rows="3" required></textarea>
+                    <input type="text" class="form-control" th:field="*{casa}" id="casa" placeholder="Escriba la casa del consumidor" required>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="consumo">Consumo</label>
-                    <textarea class="form-control" th:field="*{consumo}" id="consumo" cols="12" rows="3" required></textarea>
+                    <input type="text" class="form-control" th:field="*{consumo}" id="consumo" placeholder="Escriba el consumo del cliente" required>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-package com.ProyectoAgua.modelos;
+/*package com.ProyectoAgua.modelos;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -61,4 +61,4 @@ public class Usuario {
     public void setClave(@NotBlank(message = "La clave es requerida") String clave) {
         this.clave = clave;
     }
-}
+} */

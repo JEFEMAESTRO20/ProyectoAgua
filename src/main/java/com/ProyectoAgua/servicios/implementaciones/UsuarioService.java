@@ -1,4 +1,4 @@
-package com.ProyectoAgua.servicios.implementaciones;
+/*package com.ProyectoAgua.servicios.implementaciones;
 
 import com.ProyectoAgua.modelos.Usuario;
 import com.ProyectoAgua.repositorios.IRegistroAguaRepository;
@@ -40,4 +40,4 @@ public class UsuarioService implements IUsuarioService {
     public void eliminarPorId(Integer id) {
         usuarioRepository.deleteById(id);
     }
-}
+}*/

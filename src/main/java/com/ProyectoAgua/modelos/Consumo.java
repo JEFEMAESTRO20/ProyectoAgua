@@ -28,7 +28,8 @@ public class Consumo {
         return idDerechoAgua;
     }
 
-    public void setIdDerechoAgua(@NotBlank(message = "El id es requerido") String idDerechoAgua) {
+    public void setIdDerechoAgua(@NotBlank(message = "El id es requerido") String idDerechoAgua)
+    {
         this.idDerechoAgua = idDerechoAgua;
     }
 
@@ -36,7 +37,8 @@ public class Consumo {
         return consumo;
     }
 
-    public void setConsumo(@NotBlank(message = "El consumo es requerido") String consumo) {
+    public void setConsumo(@NotBlank(message = "El consumo es requerido") String consumo)
+    {
         this.consumo = consumo;
     }
 }

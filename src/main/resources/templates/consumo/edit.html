@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+<body>
+<div layout:fragment="content">
+
+    <h1>Editar Consumo</h1>
+    <form th:action="@{/consumos/save}" th:object="${consumo}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" class="form-control" th:field="*{id}" id="id" placeholder="Escriba el numero de su Id" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <textarea type="text" class="form-control" th:field="*{nombre}" id="nombre" cols="12" rows="3" placeholder="Escriba el nombre del consumo" required></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pasaje">Pasaje</label>
+                    <textarea type="text" class="form-control" th:field="*{pasaje}" id="pasaje" cols="12" rows="3" placeholder="Escriba el nombre del pasaje" required></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="casa">Casa</label>
+                    <textarea type="text" class="form-control" th:field="*{casa}" id="casa" cols="12" rows="3" placeholder="Escriba el nombre de la casa" required></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="consumo">Cosumo</label>
+                    <textarea type="text" class="form-control" th:field="*{casa}" id="consumo" cols="12" rows="3" placeholder="Escriba el nombre del cunsumidor" required></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <a th:href="@{/consumos}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+</body>
+
+</html>

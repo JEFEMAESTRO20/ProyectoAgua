@@ -1,4 +1,4 @@
-package com.ProyectoAgua.servicios.interfaces;
+/*package com.ProyectoAgua.servicios.interfaces;
 
 import com.ProyectoAgua.modelos.Usuario;
 import org.springframework.data.domain.Page;
@@ -17,4 +17,4 @@ public interface IUsuarioService {
     Usuario crearOEditar(Usuario usuario);
 
     void eliminarPorId (Integer id);
-}
+}*/

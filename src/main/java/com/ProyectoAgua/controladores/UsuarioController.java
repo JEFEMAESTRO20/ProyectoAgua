@@ -1,4 +1,4 @@
-package com.ProyectoAgua.controladores;
+/*package com.ProyectoAgua.controladores;
 
 import com.ProyectoAgua.modelos.RegistroAgua;
 import com.ProyectoAgua.modelos.Usuario;
@@ -45,4 +45,4 @@ public class UsuarioController {
 
         return "usuario/index";
     }
-}
+}*/
