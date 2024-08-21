@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <h1>Eliminar Mecha</h1>
+    <h3>¿Estás seguro que deseas eliminar este registro?</h3>
+    <div>
+        <hr />
+        <div class="row">
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-10" th:text="${mecha.id}"></dd>
+
+            <dt class="col-sm-2">ID Derecho Agua</dt>
+            <dd class="col-sm-10" th:text="${mecha.idDerechoAgua}"></dd>
+
+            <dt class="col-sm-2">CantidadMecha</dt>
+            <dd class="col-sm-10" th:text="${mecha.cantidadMecha}"></dd>
+
+        </div>
+
+        <form th:action="@{/mechas/delete}" method="post">
+            <input type="hidden" name="Id" th:value="${mecha.id}">
+            <input type="submit" value="Eliminar" class="btn btn-danger">
+            <a th:href="@{/mechas}">Regresar</a>
+        </form>
+    </div>
+</div>
+
+</html>

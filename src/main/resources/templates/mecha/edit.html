@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+    <h1>Editar Mecha</h1>
+    <form th:action="@{/mechas/save}" th:object="${mecha}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="derechoAgua">Derecho de Agua</label>
+                    <select class="form-control" th:field="*{derechoAgua.id}" id="derechoAgua" required>
+                        <option th:each="derechoAgua : ${derechoAguas}"
+                                th:value="${derechoAgua.id}"
+                                th:text="${derechoAgua.nombre}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="cantidadMecha">CantidadMecha</label>
+                    <input type="number" class="form-control" th:field="*{cantidadMecha}" id="cantidadMecha" placeholder="Escriba la cantidad de la mecha" required>
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <a th:href="@{/mechas}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+</html>
