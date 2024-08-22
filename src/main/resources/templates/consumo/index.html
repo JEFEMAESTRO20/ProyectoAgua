@@ -34,19 +34,15 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Pasaje</th>
-            <th>Casa</th>
+            <th>Derecho Agua</th>
             <th>Consumo</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${consumos}">
             <td th:text="${item.id}"></td>
-            <td th:text="${item.nombre}"></td>
-            <td th:text="${item.Pasaje}"></td>
-            <td th:text="${item.Casa}"></td>
-            <td th:text="${item.Consumos}"></td>
+            <td th:text="${item.idDDerechoAgua.nombre} ${item.idDDerechoAgua.pasaje} ${item.idDDerechoAgua.casa}"></td>
+            <td th:text="${item.Consumo}"></td>
             <td>
                 <a th:href="@{/consumos/details/{id}(id=${item.id})}" class="btn btn-secondary btn-sm">Detalles</a>
                 <a th:href="@{/consumos/edit/{id}(id=${item.id})}" class="btn btn-info btn-sm">Editar</a>

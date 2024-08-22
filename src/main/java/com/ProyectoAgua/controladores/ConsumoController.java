@@ -2,6 +2,7 @@ package com.ProyectoAgua.controladores;
 
 import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.servicios.interfaces.IConsumoService;
+import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +23,9 @@ import java.util.stream.IntStream;
 public class ConsumoController {
     @Autowired
     private IConsumoService consumoService;
+
+    @Autowired
+    private IDerechoAguaService derechoAguaService;
 
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
@@ -44,7 +48,9 @@ public class ConsumoController {
     }
 
     @GetMapping("/create")
-    public String create(Consumo consumo){
+    public String create(Model model)
+    {
+        model.addAttribute("derechoAgua", derechoAguaService.obtenerTodos());
         return "consumo/create";
     }
 
