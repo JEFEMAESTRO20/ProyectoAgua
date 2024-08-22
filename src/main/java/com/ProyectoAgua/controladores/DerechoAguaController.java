@@ -1,8 +1,6 @@
 package com.ProyectoAgua.controladores;
 
-import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.modelos.DerechoAgua;
-import com.ProyectoAgua.servicios.interfaces.IConsumoService;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,9 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,5 +42,51 @@ public class DerechoAguaController {
         }
 
         return "derechoAgua/index";
+    }
+
+    @GetMapping("/create")
+    public String create(DerechoAgua derechoAgua){
+        return "derechoAgua/create";
+    }
+
+    @PostMapping("/save")
+    public String save (DerechoAgua derechoAgua, BindingResult result, Model model, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            model.addAttribute(derechoAgua);
+            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
+            return "derechoAgua/create";
+        }
+
+        derechoAguaService.crearOEditar(derechoAgua);
+        attributes.addFlashAttribute("msg", "DerechoAgua creado correctamente");
+        return "redirect:/derechoAguas";
+    }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable("id") Integer id, Model model){
+        DerechoAgua derechoAgua = derechoAguaService.buscarPorId(id).get();
+        model.addAttribute("derechoAgua", derechoAgua);
+        return "derechoAgua/details";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model){
+        DerechoAgua derechoAgua = derechoAguaService.buscarPorId(id).get();
+        model.addAttribute("derechoAgua", derechoAgua);
+        return "derechoAgua/edit";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String remove(@PathVariable("id") Integer id, Model model){
+        DerechoAgua derechoAgua = derechoAguaService.buscarPorId(id).get();
+        model.addAttribute("derechoAgua", derechoAgua);
+        return "derechoAgua/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(DerechoAgua derechoAgua, RedirectAttributes attributes){
+        derechoAguaService.eliminarPorId(derechoAgua.getId());
+        attributes.addFlashAttribute("msg", "derechoAgua eliminado correrctamente");
+        return "redirect:/derechoAguas";
     }
 }

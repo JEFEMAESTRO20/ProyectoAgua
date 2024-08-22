@@ -8,25 +8,10 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del consumidor" required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label for="pasaje">Pasaje</label>
-                    <input type="text" class="form-control" th:field="*{pasaje}" id="pasaje" placeholder="Escriba el pasaje del consumidor" required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="casa">Casa</label>
-                    <input type="text" class="form-control" th:field="*{casa}" id="casa" placeholder="Escriba la casa del consumidor" required>
+                    <label for="derechoAgua">DerechoAgua</label>
+                    <select id="derechoAgua" name="derechoAguaId" class="form-control" required>
+                        <option th:each="derechoAgua : ${derechoAguas}" th:value="${derechoAgua.id}" th:text="|${derechoAgua.nombre} ${derechoAgua.pasaje} ${derechoAgua.casa}|"></option>
+                    </select>
                 </div>
             </div>
         </div>

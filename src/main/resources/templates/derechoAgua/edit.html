@@ -1,30 +1,52 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <div layout:fragment="content">
-        <h1>Editar Derecho de Agua</h1>
-        <form th:action="@{/derechoAguas/edit}" th:object="${derechoAguas}" method="post">
-            <input type="hidden" th:field="*{id}" />
+<div layout:fragment="content">
 
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required />
+    <h1>Editar Consumo</h1>
+    <form th:action="@{/derechoAguas/save}" th:object="${derechoAgua}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" class="form-control" th:field="*{id}" id="id" placeholder="Escriba el numero de su Id" required/>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="pasaje">Pasaje</label>
-                <input type="text" id="pasaje" th:field="*{pasaje}" class="form-control" required />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del derecho" required/>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="casa">Casa</label>
-                <input type="text" id="casa" th:field="*{casa}" class="form-control" required />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pasaje">Pasaje</label>
+                    <input type="text" class="form-control" th:field="*{pasaje}" id="pasaje" placeholder="Escriba el pasaje del derecho" required/>
+                </div>
             </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <a th:href="@{/derechoAguas}">Cancelar</a>
-        </form>
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="casa">Casa</label>
+                    <input type="text" class="form-control" th:field="*{casa}" id="casa" placeholder="Escriba la casa de su derecho" required/>
+                </div>
+            </div>
+        </div>
 
-    </html>
+        <hr>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <a th:href="@{/derechoAguas}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+</body>
+
+</html>

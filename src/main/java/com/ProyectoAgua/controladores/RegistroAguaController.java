@@ -1,8 +1,6 @@
 package com.ProyectoAgua.controladores;
 
-import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.modelos.RegistroAgua;
-import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IRegistroAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,9 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +42,51 @@ public class RegistroAguaController {
         }
 
         return "registroagua/index";
+    }
+    @GetMapping("/create")
+    public String create(RegistroAgua registroAgua){
+        return "registroAgua/create";
+    }
+
+    @PostMapping("/save")
+    public String save (RegistroAgua registroAgua, BindingResult result, Model model, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
+            model.addAttribute(registroAgua);
+            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
+            return "registroAgua/create";
+        }
+
+        registroAguaService.crearOEditar(registroAgua);
+        attributes.addFlashAttribute("msg", "registroAgua creado correctamente");
+        return "redirect:/registroAguas";
+    }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable("id") Integer id, Model model){
+        RegistroAgua registroAgua = registroAguaService.buscarPorId(id).get();
+        model.addAttribute("registroAgua", registroAgua);
+        return "registroAgua/details";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model){
+        RegistroAgua registroAgua = registroAguaService.buscarPorId(id).get();
+        model.addAttribute("registroAgua", registroAgua);
+        return "registroAgua/edit";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String remove(@PathVariable("id") Integer id, Model model){
+        RegistroAgua registroAgua = registroAguaService.buscarPorId(id).get();
+        model.addAttribute("registroAgua", registroAgua);
+        return "registroAgua/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(RegistroAgua registroAgua, RedirectAttributes attributes){
+        registroAguaService.eliminarPorId(registroAgua.getId());
+        attributes.addFlashAttribute("msg", "registroAgua eliminado correrctamente");
+        return "redirect:/registroAguas";
     }
 }
 

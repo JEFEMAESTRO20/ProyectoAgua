@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div layout:fragment="content">
     <h1>Detalles del Derecho de Agua</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <dl class="row">
-                <dt class="col-sm-2">ID</dt>
-                <dd class="col-sm-10" th:text="${derechoAguas.id}"></dd>
+    <div>
+        <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">ID</dt>
+                    <dd class="col-sm-10" th:text="${derechoAgua.id}"></dd>
 
-                <dt class="col-sm-2">Nombre</dt>
-                <dd class="col-sm-10" th:text="${derechoAguas.nombre}"></dd>
+                    <dt class="col-sm-2">Nombre</dt>
+                    <dd class="col-sm-10" th:text="${derechoAgua.nombre}"></dd>
 
-                <dt class="col-sm-2">Pasaje</dt>
-                <dd class="col-sm-10" th:text="${derechoAguas.pasaje}"></dd>
+                    <dt class="col-sm-2">Pasaje</dt>
+                    <dd class="col-sm-10" th:text="${derechoAgua.pasaje}"></dd>
 
-                <dt class="col-sm-2">Casa</dt>
-                <dd class="col-sm-10" th:text="${derechoAguas.casa}"></dd>
-            </dl>
-        </div>
-        <div class="col-sm-6">
-            <a th:href="@{/derechoAguas/edit/{id}(id=${derechoAgua.id})}" class="btn btn-primary">Editar</a>
-            <a th:href="@{/derechoAguas}" class="btn btn-secondary">Regresar</a>
-        </div>
+                    <dt class="col-sm-2">Casa</dt>
+                    <dd class="col-sm-10" th:text="${derechoAgua.casa}"></dd>
+                </dl>
+
+                <a th:href="@{/derechoAguas/edit/{id}(id=${derechoAgua.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/derechoAguas}" class="btn btn-secondary">Regresar</a>
     </div>
 </div>
 
-</html>
+

@@ -3,6 +3,8 @@ package com.ProyectoAgua.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "mechas")
 public class Mecha {
@@ -15,6 +17,9 @@ public class Mecha {
 
     @NotBlank(message = "La CantidadMecha es requerida")
     private String cantidadMecha;
+
+    @OneToMany(mappedBy = "mecha")
+    private List<DerechoAgua> derechoAguas;
 
     public Integer getId() {
         return id;
@@ -38,5 +43,13 @@ public class Mecha {
 
     public void setCantidadMecha(@NotBlank(message = "La CantidadMecha es requerida") String cantidadMecha) {
         this.cantidadMecha = cantidadMecha;
+    }
+
+    public List<DerechoAgua> getDerechoAguas() {
+        return derechoAguas;
+    }
+
+    public void setDerechoAguas(List<DerechoAgua> derechoAguas) {
+        this.derechoAguas = derechoAguas;
     }
 }

@@ -1,24 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
 
 
 <div layout:fragment="content">
     <h1>Crear Nuevo Derecho de Agua</h1>
-    <form th:action="@{/derechoAguas/create}" th:object="${derechoAguas}" method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required />
+    <form th:action="@{/derechoAguas/save}" th:object="${derechoAgua}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del consumidor" required>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="pasaje">Pasaje</label>
-            <input type="text" id="pasaje" th:field="*{pasaje}" class="form-control" required />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pasaje">Pasaje</label>
+                    <input type="text" class="form-control" th:field="*{pasaje}" id="pasaje" placeholder="Escriba el pasaje de derecho" required>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="casa">Casa</label>
-            <input type="text" id="casa" th:field="*{casa}" class="form-control" required />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="casa">Casa</label>
+                    <input type="text" class="form-control" th:field="*{casa}" id="casa" placeholder="Escriba la casa del derecho"  required />
+                </div>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
