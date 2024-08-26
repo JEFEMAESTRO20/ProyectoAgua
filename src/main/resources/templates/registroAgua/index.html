@@ -35,37 +35,8 @@
             });
         </script>
     </div>
-
     <h1 class="text-center">Registro de Agua</h1>
     <a th:href="@{/registroAguas/create}" class="btn btn-outline-primary">Nuevo Registro de  Agua</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>IdDerechoagua</th>
-            <th>Pago</th>
-            <th>FechaPago</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="item : ${registroAguas}">
-            <td th:text="${item.id}"></td>
-            <!-- Aquí accedemos al ID de la entidad DerechoAgua -->
-            <td th:text="${item.derechoAgua.id}"></td>
-            <td th:text="${item.Pago}"></td>
-            <td th:text="${item.FechaPago}"></td>
-            <td>
-                <a th:href="@{/registroAguas/details/{id}(id=${item.id})}" class="btn btn-secondary btn-sm">Detalles</a>
-                <a th:href="@{/registroAguas/edit/{id}(id=${item.id})}" class="btn btn-info btn-sm">Editar</a>
-                <a th:href="@{/registroAguas/remove/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-
     <div class="container mt-4">
         <div class="mb-3">
             <div class="input-group">

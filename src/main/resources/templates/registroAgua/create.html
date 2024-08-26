@@ -5,11 +5,7 @@
 
 <div layout:fragment="content">
     <h1>Crear Nuevo Registro</h1>
-    <form th:action="@{/grupos/create}" th:object="${grupo}" method="post">
-        <div class="form-group">
-            <label for="idDerechoAgua">ID Derecho Agua</label>
-            <input type="number" id="idDerechoAgua" th:field="*{idDerechoAgua}" class="form-control" required>
-        </div>
+    <form th:action="@{/registroAguas/create}" th:object="${registroAgua}" method="post">
 
         <div class="form-group">
             <label for="pago">Pago</label>
@@ -22,7 +18,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Crear</button>
-        <a th:href="@{/grupos}">Cancelar</a>
+        <a th:href="@{/registroAguas}">Cancelar</a>
     </form>
 </div>
 
