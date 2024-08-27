@@ -21,10 +21,10 @@
             <dd class="col-sm-10" th:text="${grupo.fechaPago}"></dd>
         </div>
 
-        <form th:action="@{/grupos/delete}" method="post">
-            <input type="hidden" name="Id" th:value="${grupo.id}">
+        <form th:action="@{/registroAguas/delete}" method="post">
+            <input type="hidden" name="Id" th:value="${registroAguas.id}">
             <input type="submit" value="Eliminar" class="btn btn-danger">
-            <a th:href="@{/grupos}">Regresar</a>
+            <a th:href="@{/registroAguas}">Regresar</a>
         </form>
     </div>
 </div>

@@ -5,20 +5,27 @@
 
 <div layout:fragment="content">
     <h1>Crear Nuevo Registro</h1>
-    <form th:action="@{/registroAguas/create}" th:object="${registroAgua}" method="post">
-
-        <div class="form-group">
-            <label for="pago">Pago</label>
-            <input type="number" id="pago" th:field="*{pago}" class="form-control" required>
+    <form th:action="@{/registroAguas/save}" th:object="${registroAgua}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pago">$ Pago</label>
+                    <input type="number" id="pago" th:field="*{pago}" class="form-control" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fechaPago">Fecha de Pago</label>
+                    <input type="datetime-local" id="fechaPago" th:field="*{fechaPago}" class="form-control" required>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="fechaPago">Fecha de Pago</label>
-            <input type="datetime-local" id="fechaPago" th:field="*{fechaPago}" class="form-control" required>
-        </div>
-
+        <hr>
         <button type="submit" class="btn btn-primary">Crear</button>
-        <a th:href="@{/registroAguas}">Cancelar</a>
+        <a th:href="@{/registroAguas}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 

@@ -1,6 +1,9 @@
 package com.ProyectoAgua.controladores;
 
+import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.modelos.RegistroAgua;
+import com.ProyectoAgua.servicios.implementaciones.DerechoAguaService;
+import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IRegistroAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,12 +56,13 @@ public class RegistroAguaController {
         if (result.hasErrors()) {
             model.addAttribute(registroAgua);
             attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
-            return "registroAgua/create";
+            return "derechoAgua/create";
         }
+
 
         registroAguaService.crearOEditar(registroAgua);
         attributes.addFlashAttribute("msg", "registroAgua creado correctamente");
-        return "redirect:/registroAguas";
+        return "redirect:/registroAgua";
     }
 
     @GetMapping("/details/{id}")

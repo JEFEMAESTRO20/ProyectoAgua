@@ -20,6 +20,7 @@
         <dd class="col-sm-10" th:text="${#dates.format(registroAgua.fechaPago, 'dd/MM/yyyy HH:mm')}"></dd>
     </div>
 
+    <hr>
     <a th:href="@{/registroAguas/edit/{id}(id=${registroAgua.id})}" class="btn btn-outline-info">Editar</a>
     <a th:href="@{/registroAguas}" class="btn btn-outline-secondary">Regresar</a>
 </div>

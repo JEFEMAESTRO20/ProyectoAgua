@@ -41,4 +41,5 @@ public class DerechoAguaService implements IDerechoAguaService {
     public void eliminarPorId(Integer id) {
         derechoAguaRepository.deleteById(id);
     }
+
 }
