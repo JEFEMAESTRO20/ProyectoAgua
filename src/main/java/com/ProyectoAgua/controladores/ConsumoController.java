@@ -1,6 +1,7 @@
 package com.ProyectoAgua.controladores;
 
 import com.ProyectoAgua.modelos.Consumo;
+import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.servicios.interfaces.IConsumoService;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,15 +56,19 @@ public class ConsumoController {
     }
 
     @PostMapping("/save")
-    public String save (Consumo consumo, BindingResult result, Model model, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            model.addAttribute(consumo);
-            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
-            return "consumo/create";
-        }
+    public String save(@RequestParam Integer derechoAguaId, RedirectAttributes attributes)
+    {
+        DerechoAgua derechoAgua = derechoAguaService.buscarPorId(derechoAguaId).get();
 
-        consumoService.crearOEditar(consumo);
-        attributes.addFlashAttribute("msg", "Consumo creado correctamente");
+        if (derechoAgua != null)
+        {
+            Consumo consumo = new Consumo();
+            consumo.setDerechoAguas((List<DerechoAgua>) derechoAgua);
+            consumo.setConsumo(String.valueOf(consumo));
+
+            consumoService.crearOEditar(consumo);
+            attributes.addFlashAttribute("msj", "consumo creado correctamente");
+        }
         return "redirect:/consumos";
     }
 

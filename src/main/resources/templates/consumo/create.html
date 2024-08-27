@@ -4,13 +4,13 @@
 
 <div layout:fragment="content">
     <h1>Crear nuevo Consumo</h1>
-    <form th:action="@{/consumos/save}" th:object="${consumo}" method="post">
+    <form th:action="@{/consumos/save}" method="post">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="derechoAgua">DerechoAgua</label>
-                    <select id="derechoAgua" name="derechoAguaId" class="form-control" required>
-                        <option th:each="derechoAgua : ${derechoAguas}" th:value="${derechoAgua.id}" th:text="|${derechoAgua.nombre} ${derechoAgua.pasaje} ${derechoAgua.casa}|"></option>
+                    <label for="idDerechoAgua">DerechoAgua</label>
+                    <select id="idDerechoAgua" name="derechoAguaId" class="form-control" required>
+                        <option th:each="idDerechoAgua : ${idDerechoAguas}" th:value="${idDerechoAgua.id}" th:text="|${idDerechoAgua.nombre} ${derechoAgua.pasaje} ${idDerechoAgua.casa}|"></option>
                     </select>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="consumo">Consumo</label>
-                    <input type="text" class="form-control" th:field="*{consumo}" id="consumo" placeholder="Escriba el consumo del cliente" required>
+                    <input type="text" class="form-control" id="consumo" placeholder="Escriba el consumo del cliente" required>
                 </div>
             </div>
         </div>

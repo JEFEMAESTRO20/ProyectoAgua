@@ -45,7 +45,8 @@ public class DerechoAguaController {
     }
 
     @GetMapping("/create")
-    public String create(DerechoAgua derechoAgua){
+    public String create(DerechoAgua derechoAgua)
+    {
         return "derechoAgua/create";
     }
 

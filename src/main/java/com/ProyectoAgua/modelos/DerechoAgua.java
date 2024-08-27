@@ -3,6 +3,8 @@ package com.ProyectoAgua.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "derechoAguas")
 public class DerechoAgua {

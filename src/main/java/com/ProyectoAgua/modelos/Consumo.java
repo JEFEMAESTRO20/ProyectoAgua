@@ -19,7 +19,9 @@ public class Consumo {
     private String consumo;
 
     @OneToMany(mappedBy = "consumo")
-    private List<DerechoAgua> derechoAguas;
+    private List<DerechoAgua> DerechoAguas;
+
+
 
     public Integer getId() {
         return id;
@@ -42,16 +44,15 @@ public class Consumo {
         return consumo;
     }
 
-    public void setConsumo(@NotBlank(message = "El consumo es requerido") String consumo)
-    {
+    public void setConsumo(@NotBlank(message = "El consumo es requerido") String consumo) {
         this.consumo = consumo;
     }
 
     public List<DerechoAgua> getDerechoAguas() {
-        return derechoAguas;
+        return DerechoAguas;
     }
 
     public void setDerechoAguas(List<DerechoAgua> derechoAguas) {
-        this.derechoAguas = derechoAguas;
+        DerechoAguas = derechoAguas;
     }
 }
