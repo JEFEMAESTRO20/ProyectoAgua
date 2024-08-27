@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-@Table (name = "consumos")
+@Table(name = "consumos")
 public class Consumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,11 @@ public class Consumo {
     @NotBlank(message = "El consumo es requerido")
     private String consumo;
 
-    @OneToMany(mappedBy = "consumo")
-    private List<DerechoAgua> DerechoAguas;
+    @ManyToOne
+    @JoinColumn(name = "idDerechoAgua", referencedColumnName = "id", insertable = false, updatable = false)
+    private DerechoAgua derechoAgua;
 
-
+    // Getters y setters
 
     public Integer getId() {
         return id;
@@ -31,28 +32,30 @@ public class Consumo {
         this.id = id;
     }
 
-    public @NotBlank(message = "El id es requerido") String getIdDerechoAgua() {
+    public String getIdDerechoAgua() {
         return idDerechoAgua;
     }
 
-    public void setIdDerechoAgua(@NotBlank(message = "El id es requerido") String idDerechoAgua)
-    {
+    public void setIdDerechoAgua(String idDerechoAgua) {
         this.idDerechoAgua = idDerechoAgua;
     }
 
-    public @NotBlank(message = "El consumo es requerido") String getConsumo() {
+    public String getConsumo() {
         return consumo;
     }
 
-    public void setConsumo(@NotBlank(message = "El consumo es requerido") String consumo) {
+    public void setConsumo(String consumo) {
         this.consumo = consumo;
     }
 
-    public List<DerechoAgua> getDerechoAguas() {
-        return DerechoAguas;
+    public DerechoAgua getDerechoAgua() {
+        return derechoAgua;
     }
 
-    public void setDerechoAguas(List<DerechoAgua> derechoAguas) {
-        DerechoAguas = derechoAguas;
+    public void setDerechoAgua(DerechoAgua derechoAgua) {
+        this.derechoAgua = derechoAgua;
+    }
+
+    public void setDerechoAguas(List<DerechoAgua> derechoAgua) {
     }
 }
