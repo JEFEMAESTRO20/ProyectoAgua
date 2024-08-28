@@ -17,4 +17,6 @@ public interface IDerechoAguaService {
     DerechoAgua crearOEditar(DerechoAgua derechoAgua);
 
     void eliminarPorId (Integer id);
+
+    
 }

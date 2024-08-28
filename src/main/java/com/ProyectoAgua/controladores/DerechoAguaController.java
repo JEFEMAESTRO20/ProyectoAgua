@@ -80,7 +80,7 @@ public class DerechoAguaController {
     @GetMapping("/remove/{id}")
     public String remove(@PathVariable("id") Integer id, Model model){
         DerechoAgua derechoAgua = derechoAguaService.buscarPorId(id).get();
-        model.addAttribute("derechoAgua", derechoAgua);
+        model.addAttribute("derechoAguas", derechoAgua);
         return "derechoAgua/delete";
     }
 
