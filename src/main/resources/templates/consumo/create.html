@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="idDerechoAgua">DerechoAgua</label>
                     <select id="idDerechoAgua" name="derechoAguaId" class="form-control" required>
-                        <option th:each="idDerechoAgua : ${idDerechoAguas}" th:value="${idDerechoAgua.id}" th:text="|${idDerechoAgua.nombre} ${derechoAgua.pasaje} ${idDerechoAgua.casa}|"></option>
+                        <option th:each="idDerechoAgua : ${derechoAguas}" th:value="${idDerechoAgua.id}" th:text="|${idDerechoAgua.nombre} ${derechoAgua.pasaje} ${idDerechoAgua.casa}|"></option>
                     </select>
                 </div>
             </div>
