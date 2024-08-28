@@ -10,7 +10,12 @@
                 <div class="form-group">
                     <label for="idDerechoAgua">DerechoAgua</label>
                     <select id="idDerechoAgua" name="derechoAguaId" class="form-control" required>
+<<<<<<< HEAD
                         <option th:each="idDerechoAgua : ${derechoAguas}" th:value="${idDerechoAgua.id}" th:text="|${idDerechoAgua.nombre} ${derechoAgua.pasaje} ${idDerechoAgua.casa}|"></option>
+=======
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"> </option>
+>>>>>>> 9e2851039ebb877646dbaad9187516b524ef7e66
                     </select>
                 </div>
             </div>
@@ -19,13 +24,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="consumo">Consumo</label>
-                    <input type="text" class="form-control" id="consumo" placeholder="Escriba el consumo del cliente" required>
+                    <input type="text" class="form-control" id="consumo" name="consumo" placeholder="Escriba el consumo del cliente" required>
                 </div>
             </div>
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Guardar</button> |
-        <a th:href="@{/consumos}">Regresar</a>
+        <button th:href="@{/consumos}" type="submit" class="btn btn-primary">Regresar</button> |
+        <!--<a th:href="@{/consumos}">Regresar</a>-->
     </form>
 
 </div>

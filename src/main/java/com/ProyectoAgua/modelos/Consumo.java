@@ -12,14 +12,11 @@ public class Consumo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El id Derecho Agua es requerido")
-    private String idDerechoAgua;
-
     @NotBlank(message = "El consumo es requerido")
     private String consumo;
 
     @ManyToOne
-    @JoinColumn(name = "idDerechoAgua", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "idDerechoAgua", nullable = false)
     private DerechoAgua derechoAgua;
 
     // Getters y setters
@@ -30,14 +27,6 @@ public class Consumo {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getIdDerechoAgua() {
-        return idDerechoAgua;
-    }
-
-    public void setIdDerechoAgua(String idDerechoAgua) {
-        this.idDerechoAgua = idDerechoAgua;
     }
 
     public String getConsumo() {
