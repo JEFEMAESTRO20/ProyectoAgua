@@ -7,22 +7,27 @@
     <h3>¿Estás seguro que deseas eliminar este registro?</h3>
     <div>
         <hr />
-        <div class="row">
-            <dt class="col-sm-2">ID</dt>
+        <dl class="row">
+            <dt class="col-sm-2">Id</dt>
             <dd class="col-sm-10" th:text="${mora.id}"></dd>
 
-            <dt class="col-sm-2">ID Derecho Agua</dt>
-            <dd class="col-sm-10" th:text="${mora.idDerechoAgua}"></dd>
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10" th:text="${mora.derechoAgua.nombre}"></dd>
+
+            <dt class="col-sm-2">Pasaje</dt>
+            <dd class="col-sm-10" th:text="${mora.derechoAgua.pasaje}"></dd>
+
+            <dt class="col-sm-2">Casa</dt>
+            <dd class="col-sm-10" th:text="${mora.derechoAgua.casa}"></dd>
 
             <dt class="col-sm-2">Mora</dt>
             <dd class="col-sm-10" th:text="${mora.mora}"></dd>
-
-        </div>
+        </dl>
 
         <form th:action="@{/moras/delete}" method="post">
             <input type="hidden" name="Id" th:value="${mora.id}">
             <input type="submit" value="Eliminar" class="btn btn-danger">
-            <a th:href="@{/moras}">Regresar</a>
+            <a th:href="@{/moras}" class="btn btn-secondary">Regresar</a>
         </form>
     </div>
 </div>

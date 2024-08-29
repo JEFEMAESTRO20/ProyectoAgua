@@ -5,19 +5,29 @@
 
 <div layout:fragment="content">
     <h1>Crear Nuevo Registro</h1>
-    <form th:action="@{/moras/create}" th:object="${mora}" method="post">
-        <div class="form-group">
-            <label for="idDerechoAgua">ID Derecho Agua</label>
-            <input type="number" id="idDerechoAgua" th:field="*{idDerechoAgua}" class="form-control" required>
+    <form th:action="@{/moras/save}" th:object="${mora}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="derechoAgua">Derecho de Agua</label>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"></option>
+                    </select>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="mora">Mora</label>
-            <input type="number" id="mora" th:field="*{mora}" class="form-control" required>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="mora">Mora</label>
+                    <input type="text" class="form-control" id="mora" th:field="*{mora}" placeholder="Escriba la mora por retraso de pago" required>
+                </div>
+            </div>
         </div>
-
+        <hr>
         <button type="submit" class="btn btn-primary">Crear</button>
-        <a th:href="@{/moras}">Cancelar</a>
+        <a th:href="@{/moras}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 

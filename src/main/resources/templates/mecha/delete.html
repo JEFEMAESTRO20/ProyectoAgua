@@ -27,7 +27,7 @@
         <form th:action="@{/mechas/delete}" method="post">
             <input type="hidden" name="Id" th:value="${mecha.id}">
             <input type="submit" value="Eliminar" class="btn btn-danger">
-            <a th:href="@{/mechas}">Regresar</a>
+            <a th:href="@{/mechas}"  class="btn btn-secondary">Regresar</a>
         </form>
     </div>
 </div>

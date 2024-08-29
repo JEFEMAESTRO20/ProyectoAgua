@@ -12,14 +12,12 @@ public class Mora {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El id derecho agua es requerido")
-    private String idDerechoAgua;
-
     @NotBlank(message = "La CantidadMecha es requerida")
     private String mora;
 
-    @OneToMany(mappedBy = "mora")
-    private List<DerechoAgua> derechoAguas;
+    @ManyToOne
+    @JoinColumn(name = "id_derechoAgua")
+    private DerechoAgua derechoAgua;
 
     public Integer getId() {
         return id;
@@ -27,14 +25,6 @@ public class Mora {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public @NotBlank(message = "El id derecho agua es requerido") String getIdDerechoAgua() {
-        return idDerechoAgua;
-    }
-
-    public void setIdDerechoAgua(@NotBlank(message = "El id derecho agua es requerido") String idDerechoAgua) {
-        this.idDerechoAgua = idDerechoAgua;
     }
 
     public @NotBlank(message = "La CantidadMecha es requerida") String getMora() {
@@ -45,11 +35,11 @@ public class Mora {
         this.mora = mora;
     }
 
-    public List<DerechoAgua> getDerechoAguas() {
-        return derechoAguas;
+    public DerechoAgua getDerechoAgua() {
+        return derechoAgua;
     }
 
-    public void setDerechoAguas(List<DerechoAgua> derechoAguas) {
-        this.derechoAguas = derechoAguas;
+    public void setDerechoAgua(DerechoAgua derechoAgua) {
+        this.derechoAgua = derechoAgua;
     }
 }

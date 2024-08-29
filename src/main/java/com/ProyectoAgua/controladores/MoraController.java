@@ -1,6 +1,9 @@
 package com.ProyectoAgua.controladores;
 
+import com.ProyectoAgua.modelos.DerechoAgua;
+import com.ProyectoAgua.modelos.Mecha;
 import com.ProyectoAgua.modelos.Mora;
+import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IMoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +26,9 @@ public class MoraController {
     @Autowired
     private IMoraService moraService;
 
+    @Autowired
+    private IDerechoAguaService derechoAguaService;
+
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1) -1;
@@ -43,20 +49,38 @@ public class MoraController {
     }
 
     @GetMapping("/create")
-    public String create(Mora mora){
+    public String create(Model model) {
+        List<DerechoAgua> derechoAguas = derechoAguaService.obtenerTodos();
+        model.addAttribute("mora", new Mora());
+        model.addAttribute("derechoAguas", derechoAguas);
         return "mora/create";
     }
 
-    @PostMapping("/save")
-    public String save (Mora mora, BindingResult result, Model model, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            model.addAttribute(mora);
-            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
-            return "mora/create";
-        }
 
-        moraService.crearOEditar(mora);
-        attributes.addFlashAttribute("msg", "mora creada correctamente");
+    @PostMapping("/save")
+    public String save(@RequestParam(required = false) Integer id,
+                       @RequestParam Integer derechoAgua,
+                       @RequestParam String mora,
+                       RedirectAttributes attributes) {
+        DerechoAgua newderechoAgua = derechoAguaService.buscarPorId(derechoAgua).orElse(null);
+
+        if (newderechoAgua != null) {
+            Mora newMora;
+
+            if (id != null) {
+                newMora = moraService.buscarPorId(id).orElse(new Mora());
+                newMora.setDerechoAgua(newderechoAgua);
+                newMora.setMora(mora);
+                moraService.crearOEditar(newMora);
+                attributes.addFlashAttribute("msg", "Mora actualizada exitosamente");
+            } else {
+                newMora = new Mora();
+                newMora.setDerechoAgua(newderechoAgua);
+                newMora.setMora(mora);
+                moraService.crearOEditar(newMora);
+                attributes.addFlashAttribute("msg", "Mora creada exitosamente");
+            }
+        }
         return "redirect:/moras";
     }
 
@@ -70,6 +94,7 @@ public class MoraController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model){
         Mora mora = moraService.buscarPorId(id).get();
+        model.addAttribute("derechoAguas", derechoAguaService.obtenerTodos());
         model.addAttribute("mora", mora);
         return "mora/edit";
     }

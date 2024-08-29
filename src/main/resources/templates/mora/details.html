@@ -6,17 +6,22 @@
 <div layout:fragment="content">
     <h1>Detalles de Mora</h1>
     <hr />
-    <div class="row">
-        <dt class="col-sm-2">ID</dt>
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
         <dd class="col-sm-10" th:text="${mora.id}"></dd>
 
-        <dt class="col-sm-2">Derecho de Agua</dt>
+        <dt class="col-sm-2">Nombre</dt>
         <dd class="col-sm-10" th:text="${mora.derechoAgua.nombre}"></dd>
 
-        <dt class="col-sm-2">Mora</dt>
-        <dd class="col-sm-10" th:text="${mora.mora}"></dd>
+        <dt class="col-sm-2">Pasaje</dt>
+        <dd class="col-sm-10" th:text="${mora.derechoAgua.pasaje}"></dd>
 
-    </div>
+        <dt class="col-sm-2">Casa</dt>
+        <dd class="col-sm-10" th:text="${mora.derechoAgua.casa}"></dd>
+
+        <dt class="col-sm-2">Consumo</dt>
+        <dd class="col-sm-10" th:text="${mora.mora}"></dd>
+    </dl>
 
     <a th:href="@{/moras/edit/{id}(id=${mora.id})}" class="btn btn-outline-info">Editar</a>
     <a th:href="@{/moras}" class="btn btn-outline-secondary">Regresar</a>

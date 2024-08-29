@@ -7,30 +7,25 @@
     <h1>Editar Mora</h1>
     <form th:action="@{/moras/save}" th:object="${mora}" method="post">
         <input type="hidden" th:field="*{id}">
-
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="derechoAgua">Derecho de Agua</label>
-                    <select class="form-control" th:field="*{derechoAgua.id}" id="derechoAgua" required>
-                        <option th:each="derechoAgua : ${derechoAguas}"
-                                th:value="${derechoAgua.id}"
-                                th:text="${derechoAgua.nombre}"></option>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre} "></option>
                     </select>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="mora">Mora</label>
-                    <input type="number" class="form-control" th:field="*{mora}" id="mora" placeholder="Escriba la mora" required>
+                    <input type="text" class="form-control" id="mora" th:field="*{mora}" placeholder="Escriba la mora del cliente" required>
                 </div>
             </div>
         </div>
-
-
         <hr>
         <button type="submit" class="btn btn-primary">Modificar</button>
         <a th:href="@{/moras}" class="btn btn-secondary">Regresar</a>

@@ -38,72 +38,40 @@
     </div>
 
     <h1 class="text-center">Buscar Mora</h1>
-    <a th:href="@{/mora/create}" class="btn btn-outline-primary">Nuevo Mora</a>
+    <a th:href="@{/moras/create}" class="btn btn-outline-primary">Nuevo Mora</a>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-            <th>IdDerechoAgua</th>
+            <th>Nombre</th>
+            <th>Pasaje</th>
+            <th>Casa</th>
             <th>Mora</th>
+            <th>Acciones</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="item : ${mora}">
+        <tr th:each="item : ${moras}">
             <td th:text="${item.id}"></td>
-            <td th:text="${item.idDerechoAgua}"></td>
-            <td th:text="${item.Mora}"></td>
+            <td th:text="${item.derechoAgua.nombre}"></td>
+            <td th:text="${item.derechoAgua.pasaje}"></td>
+            <td th:text="${item.derechoAgua.casa}"></td>
+            <td th:text="${item.mora}"></td>
             <td>
-                <a th:href="@{/mora/details/{id}(id=${item.id})}" class="btn btn-secondary btn-sm">Detalles</a>
-                <a th:href="@{/mora/edit/{id}(id=${item.id})}" class="btn btn-info btn-sm">Editar</a>
-                <a th:href="@{/mora/remove/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a th:href="@{/moras/details/{id}(id=${item.id})}" class="btn btn-secondary btn-sm">Detalles</a>
+                <a th:href="@{/moras/edit/{id}(id=${item.id})}" class="btn btn-info btn-sm">Editar</a>
+                <a th:href="@{/moras/remove/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Eliminar</a>
             </td>
         </tr>
         </tbody>
-
     </table>
 
-    <div class="container mt-4">
-        <div class="mb-3">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-search">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-search">Buscar</button>
-                </div>
-                <a th:href="@{/mora/create}" class="btn btn-primary ml-2">Crear</a>
-            </div>
-        </div>
-        <table class="table table-bordered table-hover">
-            <thead class="thead-light">
-            <tr>
-                <th>ID</th>
-                <th>IdDerechoAgua</th>
-                <th>Mora</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${mora}">
-                <td th:text="${item.id}"></td>
-                <td th:text="${item.idDerechoAgua}"></td>
-                <td th:text="${item.Mora}"></td>
-                <td>
-                    <a th:href="@{/mora/details/{id}(id=${item.id})}" class="btn btn-secondary btn-sm">Detalles</a>
-                    <a th:href="@{/mora/edit/{id}(id=${item.id})}" class="btn btn-info btn-sm">Editar</a>
-                    <a th:href="@{/mora/remove/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" th:each="pageNumber : ${pageNumbers}">
-                    <a class="page-link" th:href="@{|/mora?page=${pageNumber}|}" th:text="${pageNumber}"></a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:each="pageNumber : ${pageNumbers}">
+                <a class="page-link" th:href="@{/moras?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
+    </nav>
 </div>
