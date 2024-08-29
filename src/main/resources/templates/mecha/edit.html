@@ -13,7 +13,7 @@
                     <label for="derechoAgua">Derecho de Agua</label>
                     <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
                         <option value="" disabled selected>Seleccione un Derecho de Agua</option>
-                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"></option>
+                        <option th:each="me : ${derechoAguas}" th:value="${me.id}" th:text="${me.nombre}"></option>
                     </select>
                 </div>
             </div>
@@ -22,11 +22,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="cantidadMecha">CantidadMecha</label>
-                    <input type="number" class="form-control" th:field="*{cantidadMecha}" id="cantidadMecha" placeholder="Escriba la cantidad de la mecha" required>
+                    <input type="text" class="form-control" th:field="*{cantidadMecha}" id="cantidadMecha" placeholder="Escriba la cantidad de la mecha" required>
                 </div>
             </div>
         </div>
-
 
         <hr>
         <button type="submit" class="btn btn-primary">Modificar</button>
