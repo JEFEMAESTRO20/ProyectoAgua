@@ -4,7 +4,6 @@
       xmlns:th="http://www.w3.org/1999/xhtml">
 
 <div layout:fragment="content">
-
     <h1>Editar Consumo</h1>
     <form th:action="@{/consumos/save}" th:object="${consumo}" method="post">
         <input type="hidden" th:field="*{id}">

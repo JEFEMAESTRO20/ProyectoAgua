@@ -3,8 +3,6 @@ package com.ProyectoAgua.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
-
 @Entity
 @Table(name = "registroAguas")
 public class RegistroAgua {
@@ -12,17 +10,15 @@ public class RegistroAgua {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El id derecho agua es requerido")
-    private String idDerechoAgua;
-
     @NotBlank(message = "El monto de pago es requerido")
     private String pago;
 
     @NotBlank(message = "La fecha de pago es requerida")
     private String fechaPago;
 
-    @OneToMany(mappedBy = "registroAgua")
-    private List<DerechoAgua> derechoAguas;
+    @ManyToOne
+    @JoinColumn(name = "Id_DerechoAgua")
+    private DerechoAgua derechoAgua;
 
     public Integer getId() {
         return id;
@@ -30,14 +26,6 @@ public class RegistroAgua {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public @NotBlank(message = "El id derecho agua es requerido") String getIdDerechoAgua() {
-        return idDerechoAgua;
-    }
-
-    public void setIdDerechoAgua(@NotBlank(message = "El id derecho agua es requerido") String idDerechoAgua) {
-        this.idDerechoAgua = idDerechoAgua;
     }
 
     public @NotBlank(message = "El monto de pago es requerido") String getPago() {
@@ -56,11 +44,11 @@ public class RegistroAgua {
         this.fechaPago = fechaPago;
     }
 
-    public List<DerechoAgua> getDerechoAguas() {
-        return derechoAguas;
+    public DerechoAgua getDerechoAgua() {
+        return derechoAgua;
     }
 
-    public void setDerechoAguas(List<DerechoAgua> derechoAguas) {
-        this.derechoAguas = derechoAguas;
+    public void setDerechoAgua(DerechoAgua derechoAgua) {
+        this.derechoAgua = derechoAgua;
     }
 }

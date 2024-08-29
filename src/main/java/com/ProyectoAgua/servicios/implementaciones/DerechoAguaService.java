@@ -42,4 +42,9 @@ public class DerechoAguaService implements IDerechoAguaService {
         derechoAguaRepository.deleteById(id);
     }
 
+    @Override
+    public Object buscarTodos() {
+        return null;
+    }
+
 }
