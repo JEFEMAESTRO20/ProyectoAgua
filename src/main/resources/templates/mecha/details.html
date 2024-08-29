@@ -6,17 +6,22 @@
 <div layout:fragment="content">
     <h1>Detalles de Mecha</h1>
     <hr />
-    <div class="row">
-        <dt class="col-sm-2">ID</dt>
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
         <dd class="col-sm-10" th:text="${mecha.id}"></dd>
 
-        <dt class="col-sm-2">Derecho de Agua</dt>
+        <dt class="col-sm-2">Nombre</dt>
         <dd class="col-sm-10" th:text="${mecha.derechoAgua.nombre}"></dd>
 
-        <dt class="col-sm-2">CantidadMecha</dt>
-        <dd class="col-sm-10" th:text="${mecha.cantidadMecha}"></dd>
+        <dt class="col-sm-2">Pasaje</dt>
+        <dd class="col-sm-10" th:text="${mecha.derechoAgua.pasaje}"></dd>
 
-    </div>
+        <dt class="col-sm-2">Casa</dt>
+        <dd class="col-sm-10" th:text="${mecha.derechoAgua.casa}"></dd>
+
+        <dt class="col-sm-2">Consumo</dt>
+        <dd class="col-sm-10" th:text="${mecha.cantidadMecha}"></dd>
+    </dl>
 
     <a th:href="@{/mechas/edit/{id}(id=${mecha.id})}" class="btn btn-outline-info">Editar</a>
     <a th:href="@{/mechas}" class="btn btn-outline-secondary">Regresar</a>

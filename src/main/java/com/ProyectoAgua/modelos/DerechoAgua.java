@@ -24,6 +24,9 @@ public class DerechoAgua {
     @OneToMany(mappedBy = "derechoAgua", cascade = CascadeType.ALL)
     private List<Consumo> consumos;
 
+    @OneToMany(mappedBy = "derechoAgua", cascade = CascadeType.ALL)
+    private List<Mecha> mechas;
+
     @ManyToOne
     @JoinColumn(name="Id_Consumo")
     private Consumo consumo;
@@ -110,5 +113,13 @@ public class DerechoAgua {
 
     public void setConsumos(List<Consumo> consumos) {
         this.consumos = consumos;
+    }
+
+    public List<Mecha> getMechas() {
+        return mechas;
+    }
+
+    public void setMechas(List<Mecha> mechas) {
+        this.mechas = mechas;
     }
 }

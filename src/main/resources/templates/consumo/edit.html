@@ -11,43 +11,19 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="id">Id</label>
-                    <input type="text" class="form-control" th:field="*{id}" id="id" placeholder="Escriba el numero de su Id" required/>
+                    <label for="derechoAgua">Derecho de Agua</label>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre} "></option>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <textarea type="text" class="form-control" th:field="*{nombre}" id="nombre" cols="12" rows="3" placeholder="Escriba el nombre del consumo" required></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="pasaje">Pasaje</label>
-                    <textarea type="text" class="form-control" th:field="*{pasaje}" id="pasaje" cols="12" rows="3" placeholder="Escriba el nombre del pasaje" required></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="casa">Casa</label>
-                    <textarea type="text" class="form-control" th:field="*{casa}" id="casa" cols="12" rows="3" placeholder="Escriba el nombre de la casa" required></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="consumo">Cosumo</label>
-                    <textarea type="text" class="form-control" th:field="*{casa}" id="consumo" cols="12" rows="3" placeholder="Escriba el nombre del cunsumidor" required></textarea>
+                    <label for="consumo">Consumo</label>
+                    <input type="text" class="form-control" id="consumo" th:field="*{consumo}" placeholder="Escriba el consumo del cliente" required>
                 </div>
             </div>
         </div>
@@ -56,6 +32,5 @@
         <a th:href="@{/consumos}" class="btn btn-secondary">Regresar</a>
     </form>
 </div>
-</body>
 
 </html>

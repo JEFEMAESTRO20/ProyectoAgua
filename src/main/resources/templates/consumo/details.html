@@ -11,16 +11,19 @@
             <dd class="col-sm-10" th:text="${consumo.id}"></dd>
 
             <dt class="col-sm-2">Nombre</dt>
-            <dd class="col-sm-10" th:text="${consumo.nombre}"></dd>
+            <dd class="col-sm-10" th:text="${consumo.derechoAgua.nombre}"></dd>
 
             <dt class="col-sm-2">Pasaje</dt>
-            <dd class="col-sm-10" th:text="${consumo.pasaje}"></dd>
+            <dd class="col-sm-10" th:text="${consumo.derechoAgua.pasaje}"></dd>
+
+            <dt class="col-sm-2">Casa</dt>
+            <dd class="col-sm-10" th:text="${consumo.derechoAgua.casa}"></dd>
 
             <dt class="col-sm-2">Consumo</dt>
             <dd class="col-sm-10" th:text="${consumo.consumo}"></dd>
         </dl>
-        <a th:href="@{/cosumos/edit/{id} (id = ${cosumos.id})}" class="btn btn-outline-info">Editar</a>
-        <a th:href="@{/cosumos}" class="btn btn-secondary">Regresar</a>
+        <a th:href="@{/consumos/edit/{id} (id = ${consumo.id})}" class="btn btn-outline-info">Editar</a>
+        <a th:href="@{/consumos}" class="btn btn-secondary">Regresar</a>
     </div>
 
 </div>

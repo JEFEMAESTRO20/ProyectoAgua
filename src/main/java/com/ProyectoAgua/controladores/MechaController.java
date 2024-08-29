@@ -1,6 +1,8 @@
 package com.ProyectoAgua.controladores;
 
+import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.modelos.Mecha;
+import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IMechaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,9 @@ public class MechaController {
     @Autowired
     private IMechaService mechaService;
 
+    @Autowired
+    private IDerechoAguaService derechoAguaService;
+
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1) -1;
@@ -43,22 +48,41 @@ public class MechaController {
     }
 
     @GetMapping("/create")
-    public String create(Mecha mecha){
+    public String create(Model model) {
+        List<DerechoAgua> derechoAguas = derechoAguaService.obtenerTodos();
+        model.addAttribute("mecha", new Mecha());
+        model.addAttribute("derechoAguas", derechoAguas);
         return "mecha/create";
     }
 
-    @PostMapping("/save")
-    public String save (Mecha mecha, BindingResult result, Model model, RedirectAttributes attributes) {
-        if (result.hasErrors()) {
-            model.addAttribute(mecha);
-            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
-            return "mecha/create";
-        }
 
-        mechaService.crearOEditar(mecha);
-        attributes.addFlashAttribute("msg", "mecha creada correctamente");
+    @PostMapping("/save")
+    public String save(@RequestParam(required = false) Integer id,
+                       @RequestParam Integer derechoAgua,
+                       @RequestParam String cantidadMecha,
+                       RedirectAttributes attributes) {
+        DerechoAgua newderechoAgua = derechoAguaService.buscarPorId(derechoAgua).orElse(null);
+
+        if (newderechoAgua != null) {
+            Mecha newMecha;
+
+            if (id != null) {
+                newMecha = mechaService.buscarPorId(id).orElse(new Mecha());
+                newMecha.setDerechoAgua(newderechoAgua);
+                newMecha.setCantidadMecha(cantidadMecha);
+                mechaService.crearOEditar(newMecha);
+                attributes.addFlashAttribute("msg", "Mecha actualizada exitosamente");
+            } else {
+                newMecha = new Mecha();
+                newMecha.setDerechoAgua(newderechoAgua);
+                newMecha.setCantidadMecha(cantidadMecha);
+                mechaService.crearOEditar(newMecha);
+                attributes.addFlashAttribute("msg", "Mecha creada exitosamente");
+            }
+        }
         return "redirect:/mechas";
     }
+
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Integer id, Model model){

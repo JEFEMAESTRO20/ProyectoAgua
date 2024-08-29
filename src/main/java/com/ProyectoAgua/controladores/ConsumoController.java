@@ -4,14 +4,12 @@ import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.servicios.interfaces.IConsumoService;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -94,6 +92,7 @@ public class ConsumoController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model){
         Consumo consumo = consumoService.buscarPorId(id).get();
+        model.addAttribute("derechoAguas", derechoAguaService.obtenerTodos());
         model.addAttribute("consumo", consumo);
         return "consumo/edit";
     }
