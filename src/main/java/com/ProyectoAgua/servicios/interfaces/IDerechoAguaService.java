@@ -14,9 +14,12 @@ public interface IDerechoAguaService {
 
     Optional<DerechoAgua> buscarPorId(Integer id);
 
+
+
     DerechoAgua crearOEditar(DerechoAgua derechoAgua);
 
     void eliminarPorId (Integer id);
 
-    
+
+    Object buscarTodos();
 }

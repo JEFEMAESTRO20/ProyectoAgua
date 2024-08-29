@@ -7,15 +7,13 @@
     <h1>Editar Registro de Agua</h1>
     <form th:action="@{/registroAguas/save}" th:object="${registroAgua}" method="post">
         <input type="hidden" th:field="*{id}">
-
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="derechoAgua">Derecho de Agua</label>
-                    <select class="form-control" th:field="*{derechoAgua.id}" id="derechoAgua" required>
-                        <option th:each="derechoAgua : ${derechoAguas}"
-                                th:value="${derechoAgua.id}"
-                                th:text="${derechoAgua.nombre}"></option>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"></option>
                     </select>
                 </div>
             </div>

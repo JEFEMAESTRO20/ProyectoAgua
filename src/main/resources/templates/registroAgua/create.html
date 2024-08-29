@@ -9,8 +9,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="pago">$ Pago</label>
+                    <label for="derechoAgua">Derecho de Agua</label>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
+                        <option value="" disabled selected>Seleccione un Derecho de Agua</option>
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"></option>
+                    </select>
+                     <label for="pago">$ Pago</label>
                     <input type="number" id="pago" th:field="*{pago}" class="form-control" required>
+
+
                 </div>
             </div>
         </div>

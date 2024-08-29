@@ -1,8 +1,8 @@
 package com.ProyectoAgua.controladores;
 
+import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.modelos.RegistroAgua;
-import com.ProyectoAgua.servicios.implementaciones.DerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IRegistroAguaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,13 @@ public class RegistroAguaController {
     @Autowired
     private IRegistroAguaService registroAguaService;
 
+    @Autowired
+    private IDerechoAguaService derechoAguaService;
+
     @GetMapping
     public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1) - 1; //si no esta seteado se asigna
-        int pageSize = size.orElse(5); // tamaño de la pagina se asigna 5
+        int currentPage = page.orElse(1) - 1;
+        int pageSize = size.orElse(5);
         Pageable pageable = PageRequest.of(currentPage, pageSize);
 
         Page<RegistroAgua> registroAguas = registroAguaService.buscarTodosPaginados(pageable);
@@ -44,25 +47,29 @@ public class RegistroAguaController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "registroagua/index";
+        return "registroAgua/index";
     }
+
     @GetMapping("/create")
-    public String create(RegistroAgua registroAgua){
+    public String create(Model model) {
+
+        List<DerechoAgua> derechoAguas = derechoAguaService.obtenerTodos();
+        model.addAttribute("registroAgua", new RegistroAgua());
+        model.addAttribute("derechoAguas", derechoAguas);
         return "registroAgua/create";
     }
 
     @PostMapping("/save")
-    public String save (RegistroAgua registroAgua, BindingResult result, Model model, RedirectAttributes attributes) {
+    public String save(@ModelAttribute("registroAgua") RegistroAgua registroAgua, BindingResult result, Model model, RedirectAttributes attributes) {
         if (result.hasErrors()) {
-            model.addAttribute(registroAgua);
-            attributes.addFlashAttribute("error", "No se pudo guardar debido a un errог.");
-            return "derechoAgua/create";
+            model.addAttribute("derechoAguas", derechoAguaService.buscarTodos());
+            attributes.addFlashAttribute("error", "No se pudo guardar debido a un error.");
+            return "registroAgua/create";
         }
 
-
         registroAguaService.crearOEditar(registroAgua);
-        attributes.addFlashAttribute("msg", "registroAgua creado correctamente");
-        return "redirect:/registroAgua";
+        attributes.addFlashAttribute("msg", "Registro de agua creado correctamente");
+        return "redirect:/registroAguas";
     }
 
     @GetMapping("/details/{id}")
@@ -89,8 +96,7 @@ public class RegistroAguaController {
     @PostMapping("/delete")
     public String delete(RegistroAgua registroAgua, RedirectAttributes attributes){
         registroAguaService.eliminarPorId(registroAgua.getId());
-        attributes.addFlashAttribute("msg", "registroAgua eliminado correrctamente");
+        attributes.addFlashAttribute("msg", "Registro eliminado correrctamente");
         return "redirect:/registroAguas";
     }
 }
-
