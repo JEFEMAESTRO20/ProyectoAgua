@@ -3,6 +3,8 @@ package com.ProyectoAgua.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "registroAguas")
 public class RegistroAgua {
@@ -13,8 +15,9 @@ public class RegistroAgua {
     @NotBlank(message = "El monto de pago es requerido")
     private String pago;
 
-    @NotBlank(message = "La fecha de pago es requerida")
-    private String fechaPago;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "fecha_pago")
+    private Date fechaPago;
 
     @ManyToOne
     @JoinColumn(name = "Id_DerechoAgua")
@@ -36,11 +39,11 @@ public class RegistroAgua {
         this.pago = pago;
     }
 
-    public @NotBlank(message = "La fecha de pago es requerida") String getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(@NotBlank(message = "La fecha de pago es requerida") String fechaPago) {
+    public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 
