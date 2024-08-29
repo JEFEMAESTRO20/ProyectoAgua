@@ -1,6 +1,5 @@
 package com.ProyectoAgua.controladores;
 
-import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.modelos.RegistroAgua;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
@@ -82,6 +81,7 @@ public class RegistroAguaController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model){
         RegistroAgua registroAgua = registroAguaService.buscarPorId(id).get();
+        model.addAttribute("derechoAguas", derechoAguaService.obtenerTodos());
         model.addAttribute("registroAgua", registroAgua);
         return "registroAgua/edit";
     }

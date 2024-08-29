@@ -2,8 +2,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout">
 
+<head>
+    <style>
+        body {
+            background-color: #ADD8E6; /* Celeste */
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .image-container {
+            margin: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
 <div layout:fragment="content">
-
-    <h1 class="text-center">Bienvenidos</h1>
-
+    <h1>Bienvenidos</h1>
 </div>
+

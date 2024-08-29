@@ -1,7 +1,6 @@
 package com.ProyectoAgua.controladores;
 
 import com.ProyectoAgua.modelos.DerechoAgua;
-import com.ProyectoAgua.modelos.Mecha;
 import com.ProyectoAgua.modelos.Mora;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
 import com.ProyectoAgua.servicios.interfaces.IMoraService;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 

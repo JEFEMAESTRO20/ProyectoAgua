@@ -3,6 +3,7 @@ package com.ProyectoAgua.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public class RegistroAgua {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_pago")
-    private Date fechaPago;
+    private LocalDateTime fechaPago;
 
     @ManyToOne
     @JoinColumn(name = "Id_DerechoAgua")
@@ -39,11 +40,11 @@ public class RegistroAgua {
         this.pago = pago;
     }
 
-    public Date getFechaPago() {
+    public LocalDateTime getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(Date fechaPago) {
+    public void setFechaPago(LocalDateTime fechaPago) {
         this.fechaPago = fechaPago;
     }
 

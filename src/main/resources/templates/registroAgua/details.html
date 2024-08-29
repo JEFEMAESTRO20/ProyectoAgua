@@ -20,7 +20,10 @@
             <dd class="col-sm-10" th:text="${registroAgua.derechoAgua.casa}"></dd>
 
             <dt class="col-sm-2">Pago</dt>
-            <dd class="col-sm-10" th:text="${#dates.format(registroAgua.fechaPago, 'dd/MM/yyyy HH:mm')}"></dd>
+            <dd class="col-sm-10" th:text="${registroAgua.pago}"></dd>
+            
+            <dt class="col-sm-2">Fecha de Pago</dt>
+            <dd class="col-sm-10" th:text="${registroAgua.fechaPago}"></dd>
         </dl>
         <!-- Botones alineados en línea y más pequeños -->
         <a th:href="@{/registroAguas/edit/{id} (id = ${registroAgua.id})}" class="btn btn-outline-info">Editar</a>

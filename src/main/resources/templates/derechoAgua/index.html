@@ -3,6 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Derecho de Agua</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
 
 <div layout:fragment="content">
 
@@ -30,13 +37,14 @@
 
     <h1 class="text-center">Buscar Derecho de Agua</h1>
     <a th:href="@{/derechoAguas/create}" class="btn btn-outline-primary">Nuevo Derecho Agua</a>
-    <table class="table table-striped">
-        <thead>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Pasaje</th>
                 <th>Casa</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
