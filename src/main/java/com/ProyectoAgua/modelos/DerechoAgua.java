@@ -21,6 +21,9 @@ public class DerechoAgua {
     @NotBlank(message = "La casa es requerida")
     private String casa;
 
+    @OneToMany(mappedBy = "derechoAgua", cascade = CascadeType.ALL)
+    private List<Consumo> consumos;
+
     @ManyToOne
     @JoinColumn(name="Id_Consumo")
     private Consumo consumo;
@@ -99,5 +102,13 @@ public class DerechoAgua {
 
     public void setRegistroAgua(RegistroAgua registroAgua) {
         this.registroAgua = registroAgua;
+    }
+
+    public List<Consumo> getConsumos() {
+        return consumos;
+    }
+
+    public void setConsumos(List<Consumo> consumos) {
+        this.consumos = consumos;
     }
 }

@@ -4,6 +4,7 @@ import com.ProyectoAgua.modelos.Consumo;
 import com.ProyectoAgua.modelos.DerechoAgua;
 import com.ProyectoAgua.servicios.interfaces.IConsumoService;
 import com.ProyectoAgua.servicios.interfaces.IDerechoAguaService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -51,26 +52,37 @@ public class ConsumoController {
     @GetMapping("/create")
     public String create(Model model)
     {
-        model.addAttribute("derechoAgua", derechoAguaService.obtenerTodos());
+        List<DerechoAgua> derechoAguas = derechoAguaService.obtenerTodos();
+        model.addAttribute("consumo", new Consumo());
+        model.addAttribute("derechoAguas", derechoAguas);
         return "consumo/create";
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam Integer derechoAguaId, RedirectAttributes attributes)
-    {
-        DerechoAgua derechoAgua = derechoAguaService.buscarPorId(derechoAguaId).get();
+    public String save(@RequestParam(required = false) Integer id, @RequestParam Integer derechoAgua, @RequestParam String consumo, RedirectAttributes attributes) {
+        DerechoAgua newderechoAgua = derechoAguaService.buscarPorId(derechoAgua).orElse(null);
 
-        if (derechoAgua != null)
-        {
-            Consumo consumo = new Consumo();
-            consumo.setDerechoAguas((List<DerechoAgua>) derechoAgua);
-            consumo.setConsumo(String.valueOf(consumo));
+        if (newderechoAgua != null) {
+            Consumo newConsumo;
 
-            consumoService.crearOEditar(consumo);
-            attributes.addFlashAttribute("msj", "consumo creado correctamente");
+            // Si el ID está presente, se está actualizando
+            if (id != null) {
+                newConsumo = consumoService.buscarPorId(id).orElse(new Consumo());
+                newConsumo.setDerechoAgua(newderechoAgua);
+                newConsumo.setConsumo(consumo);
+                consumoService.crearOEditar(newConsumo);
+                attributes.addFlashAttribute("msg", "Consumo actualizado exitosamente");
+            } else { // Se está creando un nuevo registro
+                newConsumo = new Consumo();
+                newConsumo.setDerechoAgua(newderechoAgua);
+                newConsumo.setConsumo(consumo);
+                consumoService.crearOEditar(newConsumo);
+                attributes.addFlashAttribute("msg", "Consumo creado exitosamente");
+            }
         }
         return "redirect:/consumos";
     }
+
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Integer id, Model model){

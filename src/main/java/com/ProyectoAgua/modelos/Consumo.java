@@ -16,8 +16,9 @@ public class Consumo {
     private String consumo;
 
     @ManyToOne
-    @JoinColumn(name = "idDerechoAgua", nullable = false)
+    @JoinColumn(name = "id_derechoAgua")
     private DerechoAgua derechoAgua;
+
 
     // Getters y setters
 

@@ -1,21 +1,18 @@
 <html lang="en"
       xmlns:layout="http://www.ultrap.net.nz./thymeleaf/layout"
-      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.thymeleaf.org" >
+      layout:decorate="/layouts/_mainLayout"
+      xmlns:th="http://www.thymeleaf.org" >
 
 <div layout:fragment="content">
     <h1>Crear nuevo Consumo</h1>
-    <form th:action="@{/consumos/save}" method="post">
+    <form th:action="@{/consumos/save}" th:object="${consumo}" method="post">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="idDerechoAgua">DerechoAgua</label>
-                    <select id="idDerechoAgua" name="derechoAguaId" class="form-control" required>
-<<<<<<< HEAD
-                        <option th:each="idDerechoAgua : ${derechoAguas}" th:value="${idDerechoAgua.id}" th:text="|${idDerechoAgua.nombre} ${derechoAgua.pasaje} ${idDerechoAgua.casa}|"></option>
-=======
+                    <label for="derechoAgua">Derecho de Agua</label>
+                    <select id="derechoAgua" name="derechoAgua" th:field="*{derechoAgua}" class="form-control" required>
                         <option value="" disabled selected>Seleccione un Derecho de Agua</option>
-                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"> </option>
->>>>>>> 9e2851039ebb877646dbaad9187516b524ef7e66
+                        <option th:each="da : ${derechoAguas}" th:value="${da.id}" th:text="${da.nombre}"></option>
                     </select>
                 </div>
             </div>
@@ -24,13 +21,12 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="consumo">Consumo</label>
-                    <input type="text" class="form-control" id="consumo" name="consumo" placeholder="Escriba el consumo del cliente" required>
+                    <input type="text" class="form-control" id="consumo" th:field="*{consumo}" placeholder="Escriba el consumo del cliente" required>
                 </div>
             </div>
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Guardar</button> |
-        <button th:href="@{/consumos}" type="submit" class="btn btn-primary">Regresar</button> |
         <!--<a th:href="@{/consumos}">Regresar</a>-->
     </form>
 
