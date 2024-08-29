@@ -1,0 +1,41 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+<div layout:fragment="content">
+  <h1>Crear Nuevo Empleado</h1>
+  <form th:action="@{/empleados/save}" th:object="${empleado}" method="post">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Escriba el nombre del consumidor" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="direccion">Direccion</label>
+          <input type="text" class="form-control" th:field="*{direccion}" id="direccion" placeholder="Escriba la direccion del empleado" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="entrada">Entrada</label>
+          <input type="datetime-local" class="form-control" th:field="*{entrada}" id="entrada" placeholder="Escriba la entrada del empleado"  required />
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+
+</html>

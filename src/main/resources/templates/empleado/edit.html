@@ -1,0 +1,52 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div layout:fragment="content">
+
+    <h1>Editar Empleado</h1>
+    <form th:action="@{/empleados/save}" th:object="${empleado}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" class="form-control" th:field="*{id}" id="id" placeholder="Escriba el numero de su Id" required/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" id="nombre" placeholder="Modifique el nombre del empleado" required/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" th:field="*{direccion}" id="direccion" placeholder="Modifique la direccion del empleado" required/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="entrada">Entrada</label>
+                    <input type="text" class="form-control" th:field="*{entrada}" id="entrada" placeholder="Escriba la entrada del empleado" required/>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <a th:href="@{/empleados}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+</body>
+
+</html>
